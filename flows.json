@@ -236,5 +236,15 @@
         "x": 230,
         "y": 360,
         "wires": []
+    },
+    {
+        "id": "e109d3a4061843e0",
+        "type": "comment",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Descripción del laboratorio.",
+        "info": "Simulación de temp y hum cada 5 segundos.",
+        "x": 230,
+        "y": 440,
+        "wires": []
     }
 ]

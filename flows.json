@@ -226,5 +226,15 @@
         "x": 1150,
         "y": 300,
         "wires": []
+    },
+    {
+        "id": "572f6e5d01d5113b",
+        "type": "comment",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Descripción del laboratorio",
+        "info": "Simulación de temperatura y humedad cada cinco segundos. Se genera una alerta cuando la temperatura supera los 30 °C o la humedad supera el 75 %",
+        "x": 230,
+        "y": 360,
+        "wires": []
     }
 ]

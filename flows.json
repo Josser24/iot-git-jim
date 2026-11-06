@@ -6,5 +6,225 @@
         "disabled": false,
         "info": "",
         "env": []
+    },
+    {
+        "id": "tab_git_sensores_jim_2026",
+        "type": "tab",
+        "label": "Sensores y alertas - Git",
+        "disabled": false,
+        "info": "Práctica de IoT para demostrar Git: un mensaje cada 5 s, dos variables simuladas con JSONata, alertas por umbrales y tres Debug. No requiere plugins."
+    },
+    {
+        "id": "inject_jim_sensores",
+        "type": "inject",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Cada 5 segundos",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "change_jim_mediciones"
+            ]
+        ]
+    },
+    {
+        "id": "change_jim_mediciones",
+        "type": "change",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Simular temperatura y humedad",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"temperatura\": $round(18 + $random() * 20, 1), \"humedad\": $round(40 + $random() * 55, 1)}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "debug_jim_mediciones",
+                "switch_jim_calor",
+                "switch_jim_humedad"
+            ]
+        ]
+    },
+    {
+        "id": "debug_jim_mediciones",
+        "type": "debug",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Datos de los sensores",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "switch_jim_calor",
+        "type": "switch",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Temperatura mayor a 30",
+        "property": "payload.temperatura",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "30",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 200,
+        "wires": [
+            [
+                "change_jim_calor"
+            ]
+        ]
+    },
+    {
+        "id": "switch_jim_humedad",
+        "type": "switch",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Humedad mayor a 75",
+        "property": "payload.humedad",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "75",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 300,
+        "wires": [
+            [
+                "change_jim_humedad"
+            ]
+        ]
+    },
+    {
+        "id": "change_jim_calor",
+        "type": "change",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Aviso de temperatura",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ALERTA: temperatura por encima de 30 °C",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 200,
+        "wires": [
+            [
+                "debug_jim_calor"
+            ]
+        ]
+    },
+    {
+        "id": "change_jim_humedad",
+        "type": "change",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Aviso de humedad",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ALERTA: humedad por encima de 75 %",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 300,
+        "wires": [
+            [
+                "debug_jim_humedad"
+            ]
+        ]
+    },
+    {
+        "id": "debug_jim_calor",
+        "type": "debug",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Alerta temperatura",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "debug_jim_humedad",
+        "type": "debug",
+        "z": "tab_git_sensores_jim_2026",
+        "name": "Alerta humedad",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 300,
+        "wires": []
     }
 ]

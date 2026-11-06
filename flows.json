@@ -1,13 +1,5 @@
 [
     {
-        "id": "e88a85136a61211e",
-        "type": "tab",
-        "label": "Flujo 1",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "tab_git_sensores_jim_2026",
         "type": "tab",
         "label": "Sensores y alertas - Git",
@@ -228,23 +220,13 @@
         "wires": []
     },
     {
-        "id": "572f6e5d01d5113b",
-        "type": "comment",
-        "z": "tab_git_sensores_jim_2026",
-        "name": "Descripción del laboratorio",
-        "info": "Simulación de temperatura y humedad cada cinco segundos. Se genera una alerta cuando la temperatura supera los 30 °C o la humedad supera el 75 %",
-        "x": 230,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "e109d3a4061843e0",
+        "id": "da85b1fc2ca2930f",
         "type": "comment",
         "z": "tab_git_sensores_jim_2026",
         "name": "Descripción del laboratorio.",
         "info": "Simulación de temp y hum cada 5 segundos.",
-        "x": 230,
-        "y": 440,
+        "x": 350,
+        "y": 480,
         "wires": []
     }
 ]
